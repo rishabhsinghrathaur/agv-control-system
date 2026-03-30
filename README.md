@@ -263,7 +263,17 @@ pip3 install -r requirements.txt
 
 ## License
 
-[Choose your license - MIT recommended for open-source hardware/software]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+The MIT License is a permissive open-source license that allows:
+- ✅ Commercial use
+- ✅ Modification
+- ✅ Distribution
+- ✅ Private use
+- ❌ No liability (as-is)
+- ❌ No warranty
+
+In short: you're free to use this code for any purpose, just include the copyright and license notice.
 
 ## Contributing
 
