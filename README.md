@@ -251,18 +251,65 @@ Contributions welcome! Please:
 2. Create a feature branch
 3. Submit a Pull Request with detailed description
 
+## 📋 Implementation Plan
+
+A detailed, time-bound roadmap with priorities is available in **[IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)**.
+
+**Quick priorities:**
+- **P0 (CRITICAL):** E-Stop button, battery voltage monitoring
+- **P1 (HIGH):** Wireless UART bridge, wheel encoders, PID speed control
+- **P2 (MEDIUM):** LED indicators, configuration system
+- **P3 (ADVANCED):** Pure Pursuit path following, RPLidar SLAM
+- **P4 (FUTURE):** ROS2 integration, multi-AGV coordination
+
+---
+
 ## Future Upgrades (Roadmap)
 
-- [ ] **Position estimation** - Wheel encoders + IMU fusion (odometry)
-- [ ] **Path following** - Pure Pursuit or Stanley controller
-- [ ] **SLAM capabilities** - Lidar integration (RPLidar A1/A2)
-- [ ] **ROS2 integration** - ROS 2 Hummingbot nodes
-- [ ] **Battery management** - ADC-based voltage monitoring + low-voltage cutoff
-- [ ] **LED indicators** - Status LEDs for power, errors, mode
-- [ ] **Wireless control** - Remove physical cable dependency (XBee/NRF24L01)
-- [ ] **B一定** - Add emergency stop hardware button
-- [ ] **Multi-AGV coordination** - Networked fleet management
-- [ ] **Autonomous docking** - IR beacon or QR code docking station
+### Safety & Power (Immediate)
+- [x] **E-Stop hardware** - [See plan](IMPLEMENTATION_PLAN.md#m11-emergency-stop-hardware)
+- [ ] **Battery monitoring** - ADS1115 + automatic low-voltage cutoff
+- [ ] **Fused power distribution** - Proper fusing per subsystem
+
+### Core Upgrades (High Priority)
+- [ ] **Wireless communication** - ESP32 WiFi serial bridge (remove UART cable)
+- [ ] **Wheel encoders** - Hall effect sensors for odometry
+- [ ] **PID speed control** - Closed-loop velocity regulation
+- [ ] **LED status indicators** - At-a-glance system status
+
+### Autonomy (Advanced)
+- [ ] **Path following** - Pure Pursuit controller for waypoint navigation
+- [ ] **SLAM & mapping** - RPLidar A1 integration with occupancy grid
+- [ ] **Position estimation** - Sensor fusion (odometry + IMU)
+- [ ] **ROS2 integration** - micro-ROS on Teensy, ROS2 nodes on RPi
+- [ ] **Autonomous docking** - AprilTag-based docking station
+
+### Extensions (Research)
+- [ ] **Multi-AGV coordination** - MQTT-based fleet management
+- [ ] **Deep learning navigation** - CNN-based end-to-end driving
+- [ ] **Robotic arm** - Add manipulator for pick-and-place
+- [ ] **Advanced sensors** - Intel RealSense depth camera
+
+See [docs/upgrades.md](docs/upgrades.md) for complete upgrade catalog.
+
+---
+
+## 📚 Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [**README.md**](README.md) | Project overview and quick start |
+| [**SETUP.md**](SETUP.md) | Step-by-step installation and configuration |
+| [**HARDWARE.md**](HARDWARE.md) | Wiring diagrams, pinouts, BOM |
+| [**IMPLEMENTATION_PLAN.md**](IMPLEMENTATION_PLAN.md) | Detailed upgrade timeline and tasks |
+| [**docs/protocol.md**](docs/protocol.md) | Communication protocol reference |
+| [**docs/troubleshooting.md**](docs/troubleshooting.md) | Problem-solving guide |
+| [**docs/upgrades.md**](docs/upgrades.md) | Complete upgrade catalog |
+| [**schematics/pinout.md**](schematics/pinout.md) | Quick pin reference card |
+| [**CONTRIBUTING.md**](CONTRIBUTING.md) | How to contribute |
+| [**CODE_OF_CONDUCT.md**](CODE_OF_CONDUCT.md) | Community guidelines |
+
+---
 
 ## Troubleshooting
 
