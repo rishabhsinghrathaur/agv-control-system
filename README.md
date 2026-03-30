@@ -5,35 +5,56 @@ A comprehensive open-source autonomous vehicle platform featuring **Teensy 4.1**
 ## System Architecture
 
 ```
-┌─────────────────┐         UART (115200 baud)        ┌─────────────────┐
-│  Raspberry Pi 5 │ ◄──────────────────────────────► │   Teensy 4.1   │
-│                 │                                  │                 │
-│ • Flask Web UI  │                                  │ • 4× BLDC Ctrl  │
-│ • MPU6050 Gyro  │                                  │ • PID Control   │
-│ • Ultrasonic x2 │                                  │ • Brake Ctrl    │
-│ • Camera Feed   │                                  │ • PWM Gen       │
-│ • Obstacle Avoid│                                  │                 │
-└─────────────────┘                                  └─────────────────┘
-         │                                                    │
-         │                                                    │
-         ▼                                                    ▼
-   ┌──────────┐                                       ┌──────────┐
-   │  hub     │                                       │  hub     │
-   │  motor FL │                                       │  motor FR │
-   └──────────┘                                       └──────────┘
-         │                                                    │
-         │                                                    │
-   └──────────┘                                       └──────────┘
-         │                                                    │
-         ▼                                                    ▼
-   ┌──────────┐                                       ┌──────────┘
-   │  hub     │
-   │  motor RL │
-   └──────────┘
-         │
-         ▼
-   ┌──────────┘
+                    ┌─────────────────────────────────────┐
+                    │     Raspberry Pi 5 (SBC)           │
+                    │  ┌─────────────────────────────┐  │
+                    │  │ Flask Web UI (port 5000)   │  │
+                    │  │ MPU6050 (I2C)              │  │
+                    │  │ HC-SR04 ×2 (GPIO)          │  │
+                    │  │ USB Camera (OpenCV)        │  │
+                    │  │ Obstacle Avoidance Logic   │  │
+                    │  │ Path Following (Pure Pursuit│ │
+                    │  └──────────────┬──────────────┘  │
+                    └──────────────────┼─────────────────┘
+                                       │ UART (115200 baud)
+                                       │
+                    ┌──────────────────▼─────────────────┐
+                    │     Teensy 4.1 (Microcontroller)  │
+                    │  ┌─────────────────────────────┐  │
+                    │  │ 4× BLDC Motor Controllers   │  │
+                    │  │ PID Speed Control           │  │
+                    │  │ Brake Control (Active LOW)  │  │
+                    │  │ 20kHz PWM Generation        │  │
+                    │  │ Skid-Steer Logic            │  │
+                    │  └──────────────┬──────────────┘  │
+                    └──────────────────┼─────────────────┘
+                                       │
+                ┌──────────────────────┼──────────────────────┐
+                ▼                      ▼                      ▼
+         ┌──────────┐            ┌──────────┐            ┌──────────┐
+         │  Motor FL│            │  Motor FR│            │  Motor RL│
+         │ (Hub)    │            │ (Hub)    │            │ (Hub)    │
+         └──────────┘            └──────────┘            └──────────┘
+                                                             │
+                                                             ▼
+                                                      ┌──────────┐
+                                                      │  Motor RR│
+                                                      │ (Hub)    │
+                                                      └──────────┘
 ```
+
+**Data Flow:**
+1. **RPi → Teensy:** ASCII commands (`d<val>`, `t<val>`, `f`, `b`, `s`)
+2. **Teensy → Motors:** PWM signals + direction pins
+3. **Sensors → RPi:** I2C (MPU6050), GPIO (Ultrasonics), USB (Camera)
+4. **Web UI → User:** Browser-based control panel + MJPEG stream
+
+**Key Interfaces:**
+- **UART:** Teensy Serial1 ↔ RPi /dev/serial0 (115200 baud)
+- **I2C:** MPU6050 at address 0x68
+- **GPIO:** 2× HC-SR04 (Trig/Echo pairs)
+- **USB:** Camera + Teensy debugging
+
 
 ## Features
 
