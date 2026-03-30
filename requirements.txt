@@ -1,0 +1,6 @@
+flask>=2.3.0
+opencv-python>=4.8.0
+pyserial>=3.5
+RPi.GPIO>=0.7.0
+mpu6050-raspberrypi>=0.1.1
+numpy>=1.24.0

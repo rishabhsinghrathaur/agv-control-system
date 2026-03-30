@@ -1,0 +1,108 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Project specific
+camera_calibration/
+.video/
+temp/
+test_*.py
+mpu6050_test.py
+
+# GPIO
+.DS_Store
+
+# Arduino/Teensy
+*.ini
+*.lst
+*.o
+*.d
+*.dep
+*.elf
+*.hex
+*.bin
+*.zip
+*.tar.gz
+*.map
+*.sym
+*.lss
+*.eep
+*.cache
+*.swp
+*~
+build/
+debug/
+release/
+*.opensdf
+*.sdf
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mac OSX
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Linux
+*~
+
+# Vim
+*.swp
+*.swo
+
+# JetBrains
+.idea/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Project specific
+camera_calibration/
+.video/
+temp/
+test_*.py
+mpu6050_test.py
+data/
+maps/
+bags/
